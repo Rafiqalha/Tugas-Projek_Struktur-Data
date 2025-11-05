@@ -1,0 +1,17 @@
+# === File Rahasia Google ===
+# Kredensial yang di-download
+credentials.json
+credential.json 
+
+# Token yang otomatis dibuat setelah login
+token.pkl
+token.json
+
+# === Data Pengguna ===
+data/
+
+# === File Cache Python ===
+__pycache__/
+
+# === File Streamlit ===
+.streamlit/
