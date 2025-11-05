@@ -62,7 +62,7 @@ with st.form("add_task_form"):
                     duration_minutes=60,
                     description=description
                 )
-                st.info("Tugas juga sudah disinkronkan ke Google Calendar 📅")
+                st.info("Tugas juga sudah disinkronkan ke Google Calendar")
             except Exception as e:
                 st.warning(f"Gagal menambahkan ke Google Calendar: {e}")
 

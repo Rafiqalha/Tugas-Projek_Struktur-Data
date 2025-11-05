@@ -66,7 +66,7 @@ def add_event_to_calendar(task_name, start_time, duration_minutes=60, descriptio
 
 
 if __name__ == "__main__":
-    print("🔑 Menguji koneksi ke Google Calendar...")
+    print("Menguji koneksi ke Google Calendar...")
     event = add_event_to_calendar(
         task_name="Tes Smart Scheduler",
         start_time="2025-11-05T20:00:00",
