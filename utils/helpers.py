@@ -3,9 +3,6 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from utils.constants import DEADLINE_THRESHOLD
 
-# ==========================================================
-#                   HELPER UNTUK FILE JSON
-# ==========================================================
 def read_json(file_path: Path):
     """Membaca file JSON dan mengembalikan data (list atau dict)."""
     try:
@@ -19,10 +16,6 @@ def write_json(file_path: Path, data):
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-
-# ==========================================================
-#              HELPER UNTUK WAKTU & DEADLINE
-# ==========================================================
 def format_datetime(dt: datetime) -> str:
     """Mengubah objek datetime menjadi string ISO standar."""
     return dt.isoformat(timespec="minutes")
@@ -47,10 +40,6 @@ def is_urgent(deadline: datetime) -> bool:
     """Menentukan apakah tugas sudah mendesak (kurang dari DEADLINE_THRESHOLD)."""
     return (deadline - datetime.now()).total_seconds() < DEADLINE_THRESHOLD
 
-
-# ==========================================================
-#                   HELPER UNTUK PRIORITAS
-# ==========================================================
 def determine_quadrant(importance: int, urgency: int) -> str:
     """Menentukan kuadran berdasarkan importance dan urgency."""
     if importance == 1 and urgency == 1:
@@ -62,10 +51,6 @@ def determine_quadrant(importance: int, urgency: int) -> str:
     else:
         return "Kuadran 4 (Penting & Mendesak)"
 
-
-# ==========================================================
-#              HELPER TAMBAHAN UNTUK STREAMLIT UI
-# ==========================================================
 def quadrant_color(quadrant: str) -> str:
     """Mengambil warna kuadran (akan diambil dari constants)."""
     from utils.constants import QUADRANT_COLORS

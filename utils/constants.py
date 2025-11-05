@@ -10,7 +10,7 @@ os.makedirs(DATA_DIR, exist_ok=True)
 TASK_FILE = DATA_DIR / "task.json"
 COMPLETED_FILE = DATA_DIR / "completed.json"
 
-GOOGLE_CLIENT_SECRET = BASE_DIR / "credentials.json"  # pastikan file ini ada
+GOOGLE_CLIENT_SECRET = BASE_DIR / "credentials.json" 
 
 GOOGLE_TOKEN_FILE = BASE_DIR / "token.json"
 
@@ -21,7 +21,7 @@ SCOPES = [
 
 DEFAULT_CALENDAR_NAME = "Smart Scheduler"
 
-DEADLINE_THRESHOLD = 6 * 3600  # 
+DEADLINE_THRESHOLD = 6 * 3600  
 
 QUADRANT_COLORS = {
     "Kuadran 1 (Tidak Penting & Tidak Mendesak)": "#A0A0A0",

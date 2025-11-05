@@ -5,17 +5,10 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from google.auth.transport.requests import Request
 
-# ==========================================================
-#                   KONFIGURASI GOOGLE API
-# ==========================================================
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 TOKEN_PATH = "token.pkl"
-CREDENTIALS_PATH = "credentials.json"  # pastikan file ini kamu download dari Google Cloud Console
+CREDENTIALS_PATH = "credentials.json"  
 
-
-# ==========================================================
-#                   AUTENTIKASI GOOGLE
-# ==========================================================
 def get_calendar_service():
     """
     Autentikasi dan buat service Google Calendar API.
@@ -24,12 +17,10 @@ def get_calendar_service():
     """
     creds = None
 
-    # Muat token lama jika tersedia
     if os.path.exists(TOKEN_PATH):
         with open(TOKEN_PATH, "rb") as token:
             creds = pickle.load(token)
 
-    # Jika belum ada atau token sudah tidak valid, login ulang
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
@@ -39,18 +30,12 @@ def get_calendar_service():
             )
             creds = flow.run_local_server(port=0)
 
-        # Simpan token biar login sekali aja
         with open(TOKEN_PATH, "wb") as token:
             pickle.dump(creds, token)
 
-    # Buat service Calendar API
     service = build("calendar", "v3", credentials=creds)
     return service
 
-
-# ==========================================================
-#                FUNGSI UNTUK MENAMBAHKAN EVENT
-# ==========================================================
 def add_event_to_calendar(task_name, start_time, duration_minutes=60, description=""):
     """
     Tambahkan event ke Google Calendar.
@@ -80,9 +65,6 @@ def add_event_to_calendar(task_name, start_time, duration_minutes=60, descriptio
     return event_result
 
 
-# ==========================================================
-#                   UJI COBA LANGSUNG
-# ==========================================================
 if __name__ == "__main__":
     print("🔑 Menguji koneksi ke Google Calendar...")
     event = add_event_to_calendar(
@@ -91,5 +73,5 @@ if __name__ == "__main__":
         duration_minutes=45,
         description="Ini adalah event uji coba dari Smart Scheduler"
     )
-    print("✅ Event berhasil dibuat:")
-    print(f"📅 {event.get('summary')} - {event.get('htmlLink')}")
+    print("Event berhasil dibuat:")
+    print(f"{event.get('summary')} - {event.get('htmlLink')}")

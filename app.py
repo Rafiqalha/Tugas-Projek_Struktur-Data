@@ -85,7 +85,6 @@ else:
             st.write(f"**Deadline:** {datetime.fromisoformat(task['deadline']).strftime('%d %B %Y, %H:%M')}")
             st.write(f"**Prioritas:** {task['priority']}")
 
-            # Tombol tandai selesai
             if st.button(f"Tandai '{task['name']}' Selesai", key=task['name']):
                 scheduler.mark_task_completed(task['name'], COMPLETED_FILE)
                 st.success(f"Tugas '{task['name']}' dipindahkan ke Selesai!")
@@ -104,8 +103,6 @@ else:
     for task in completed_tasks:
         st.write(f"~~{task['name']}~~ (Selesai pada: {task.get('completed_at', 'N/A')})")
 
-
-# --- Statistik ringkas ---
-st.subheader("Statistik Ringkas")
+st.subheader("Statistik Tugas")
 st.write(f"Tugas selesai: {len(completed_tasks)}")
 st.write(f"Tugas belum selesai: {len(pending_tasks)}")
